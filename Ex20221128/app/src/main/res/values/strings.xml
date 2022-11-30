@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">다인이의 어플리케이션</string>
+
+    <string name="intro">이곳은 첫 번째 액티비티입니다</string>
+    <!-- 리스트에 적용시킬 문자열 배열 -->
+    <string-array name="colors">
+        <item>Purple</item>
+        <item>Yellow</item>
+        <item>Fuchsia</item>
+    </string-array>
+
+
+</resources>
