@@ -1,6 +1,8 @@
 package com.example.directapplication
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,12 +36,17 @@ class DirectAdapter(val context: Context, val layout: Int, val data: ArrayList<D
 
         val tvTitle = view?.findViewById<TextView>(R.id.tvTitle)
         val tvUrl = view?.findViewById<TextView>(R.id.tvUrl)
-        val btnSend = view?.findViewById<Button>(R.id.btnSend)
+        val btnGo = view?.findViewById<Button>(R.id.btnGo)
 
         tvTitle?.text = data[p0].title
         tvUrl?.text = data[p0].url
 
-        btnSend?.setOnClickListener {
+        btnGo?.setOnClickListener {
+
+            var url = Uri.parse(tvUrl?.text.toString())
+            val intent = Intent(Intent.ACTION_VIEW, url)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
 
         }
 

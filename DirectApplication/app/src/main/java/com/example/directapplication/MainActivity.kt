@@ -3,6 +3,7 @@ package com.example.directapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var lv : ListView
     var directList = ArrayList<DirectVO>()
-    lateinit var adapter : DirectAdapter//새로고침을 위해 만든 adapter
+    lateinit var adapter : BaseAdapter//새로고침을 위해 만든 adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             //4-3. AddActivity에서 받아온 결과값으로 ListView에 들어갈 데이터 만들기
                 //(title, url --> 하나의 자료형으로(DirectVO)
             //4-4. Adapter 만들기
-        val adapter = DirectAdapter(applicationContext, R.layout.url_list, directList)
+        adapter = DirectAdapter(applicationContext, R.layout.url_list, directList)
             //4-5. Adapter ListView에 적용!
 
         lv.adapter = adapter
