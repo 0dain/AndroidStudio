@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imgPoke"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:scaleType="fitCenter"
+        android:background="#00ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/p1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvPokeLv"
@@ -47,4 +48,5 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgPoke"
         app:layout_constraintStart_toStartOf="@+id/tvPokeName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
