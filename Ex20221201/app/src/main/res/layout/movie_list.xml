@@ -11,9 +11,8 @@
         android:layout_width="48dp"
         android:layout_height="50dp"
         android:background="#FACDCD"
-        android:gravity="center_vertical"
+        android:gravity="center|center_vertical"
         android:text="순위"
-        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +21,9 @@
         android:layout_width="0dp"
         android:layout_height="26dp"
         android:background="#F9CCCC"
+        android:gravity="center"
         android:text="관객수"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvRank"
         app:layout_constraintStart_toStartOf="@+id/tvRank"
         app:layout_constraintTop_toBottomOf="@+id/tvRank" />
@@ -51,6 +52,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:text="관객 수"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MovieAdapter(val context: Context, val movieList: ArrayList<MovieVO>): RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MovieAdapter(val context: Context, val movies: ArrayList<MovieVO>): RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val tvRank: TextView
@@ -24,7 +24,6 @@ class MovieAdapter(val context: Context, val movieList: ArrayList<MovieVO>): Rec
             tvOpen = itemView.findViewById(R.id.tvOpen)
         }
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,16 +34,16 @@ class MovieAdapter(val context: Context, val movieList: ArrayList<MovieVO>): Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvRank.setText(movieList.get(position).rank)
-        holder.tvOld.setText(movieList.get(position).rankOldAndNew)
-        holder.tvTitle.setText(movieList.get(position).movieNm)
-        holder.tvAcc.setText(movieList.get(position).audiAcc)
-        holder.tvOpen.setText(movieList.get(position).openDt)
+        holder.tvRank.setText(movies.get(position).rank)
+        holder.tvOld.setText(movies.get(position).rankOldAndNew)
+        holder.tvTitle.setText(movies.get(position).movieNm)
+        holder.tvAcc.setText(movies.get(position).audiAcc)
+        holder.tvOpen.setText(movies.get(position).openDt)
 
     }
 
     override fun getItemCount(): Int {
-        return movieList.size
+        return movies.size
     }
 
 }

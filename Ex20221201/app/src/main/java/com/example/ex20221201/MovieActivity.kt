@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,22 +26,37 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
 
+        //Volley를 통한 네트워크 통신 4단계
+        //1. Volley 설정
+        //1-1.Volley 라이브러리 추가(지금 사용하는 버전 - implementation 'com.android.volley:volley:1.2.1')
+        //1-2. Manifest에 Permission 추가! -> Internet
+        //2. RequestQueue 생성
+            //위에 전역변수로 선언함
+        //3. Request 생성
+            //버튼을 눌렀을 때 생성!
+        //4. RequestQueue에 Request 추가
+            //아래 쪽에서 queue?.add(request) 써주면 됨~
+
+
+        //1) Container 결정
         val rc = findViewById<RecyclerView>(R.id.rc)
         val btnMovie = findViewById<Button>(R.id.btnMovie)
+        val etInput = findViewById<EditText>(R.id.etInput)//원하는 날짜로 조회하기 위해
 
-        //템플릿
+        //2) 템플릿
             //movie_list
 
-        //아이템
-            //MovieVO
+        //3)아이템
+            //movies: ArrayList<MovieVo>, 위에 전역변수로 선언됨
 
-
-
-        //Adapter
-        //MovieAdapter
+        //4) Adapter
+            //MovieAdapter
         val adapter = MovieAdapter(this, movies)
+
+        //5) Container에 Adapter 부착
         rc.adapter = adapter
 
+        //리사이클러뷰 한정 레이아웃 붙여줘야 함!
         rc.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
@@ -49,8 +65,17 @@ class MovieActivity : AppCompatActivity() {
 
         //btnMovie를 클릭했을 때 영화 정보를(response) Log로 확인해보자!
         btnMovie.setOnClickListener {
+            movies.clear()//누적된 정보 삭제하기 위해
+            val date = etInput.text.toString()//원하는 날짜 입력한 값 가져오기
+            val url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=$date" //원하는 날짜로 입력한 date 추가
 
-            val url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20221130"
+            //StringRequest는 4개의 매개변수를 가짐
+//            request = StringRequest(
+//                1,
+//                2,
+//                3,
+//                4)
+            //이렇게 적으면 자동태그로 각각의 요소에 뭐가 들어가는지 알려주기 때문에 헷갈리면 이렇게 해라~
 
             request = StringRequest(
                 //1. get/post
@@ -73,7 +98,7 @@ class MovieActivity : AppCompatActivity() {
 //                    Log.d("rank", rank)
 
                     //JsonArray에 순차적으로 접근해서 영화정보 꺼내오기
-                        //until: 등호 없애기
+                        //until: 오른쪽 등호 없애기
                     for (i in 0 until json3.length()){
                         val movie = json3.getJSONObject(i)
                         Log.d("for", "돌아가는중")
@@ -83,6 +108,7 @@ class MovieActivity : AppCompatActivity() {
                         var rankOldAndNew = movie.getString("rankOldAndNew")
                         //movieNm
                         var movieNm = movie.getString("movieNm")
+                        Log.d("영화", movieNm)
                         //openDt
                         var openDt = movie.getString("openDt")
                         //audiAcc
@@ -91,7 +117,6 @@ class MovieActivity : AppCompatActivity() {
                         //하나의 자료형 MovieVO
                         //MovieVO를 ArrayList에 저장
                         movies.add(MovieVO(rank, rankOldAndNew, movieNm, audiAcc, openDt))
-
 
                     }
                     adapter.notifyDataSetChanged()
