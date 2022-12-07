@@ -1,5 +1,6 @@
 package com.example.fullstackapplication.auth
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,12 +22,23 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //자동 로그인을 위한 sharedPreferences
+        val sharedPreferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE)
+        //로그인 정보 가져오기
+        //정보 있으면 키 값을 가져오고 없으면 빈 값을 가져옴
+        val loginId = sharedPreferences.getString("loginId", "")
+        val loginPw = sharedPreferences.getString("loginPw", "")
+
         //FirebaseAuth 초기화
         auth = Firebase.auth
 
         val btnLoginLogin = findViewById<Button>(R.id.btnLoginLogin)
         val etLoginEmail = findViewById<EditText>(R.id.etLoginEmail)
         val etLoginPw = findViewById<EditText>(R.id.etLoginPw)
+
+        //자동 로그인 관련
+        etLoginEmail.setText(loginId)
+        etLoginPw.setText(loginPw)
 
         //btnLoginLogin 누르면
         btnLoginLogin.setOnClickListener {
@@ -39,6 +51,15 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     //로그인 성공
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+
+                    //자동로그인
+                    //editor: 데이터를 삽입, 수정, 삭제 할 때 필요
+                    val editor = sharedPreferences.edit()
+                    editor.putString("loginId", email)
+                    editor.putString("loginPw", pw)
+                    editor.commit()//꼭 저장해주기!
+
+
                     //로그인 성공했으면 MainActivity로 이동
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
