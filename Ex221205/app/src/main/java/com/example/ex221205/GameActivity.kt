@@ -31,7 +31,7 @@ class GameActivity : AppCompatActivity() {
 
         //버튼을 누르면
         btnGame.setOnClickListener {
-            cnt = 1
+
             for(i in 0 until btns.size){
                 val btn = btns[i]
                 btnSet(btn, numbers[i])
@@ -46,7 +46,7 @@ class GameActivity : AppCompatActivity() {
                         btn.visibility = View.INVISIBLE
                         cnt++
 
-                        if(cnt == 26){
+                        if(cnt % 25 == 1){
                             rdSet(numbers, cnt)
                             for(j in 0 until btns.size) {
                                 val btn = btns[j]
@@ -67,6 +67,8 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun rdSet(numbers: ArrayList<Int>, cnt: Int){
+        numbers.clear()
+
         //1~25까지 배열에 넣기
         for(i in cnt .. cnt+24){
             numbers.add(i)
