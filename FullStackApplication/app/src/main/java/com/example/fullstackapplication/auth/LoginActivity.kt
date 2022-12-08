@@ -36,6 +36,11 @@ class LoginActivity : AppCompatActivity() {
         val etLoginEmail = findViewById<EditText>(R.id.etLoginEmail)
         val etLoginPw = findViewById<EditText>(R.id.etLoginPw)
 
+        //채팅 로그인 아이디 관련
+        //(키, 어디서 공유할 수 있는지)
+        val sp = getSharedPreferences("loginInfo", Context.MODE_PRIVATE)
+        val loginName = sp.getString("loginId", "null")//로그인 정보 없으면 null
+
         //자동 로그인 관련
         etLoginEmail.setText(loginId)
         etLoginPw.setText(loginPw)
@@ -58,6 +63,11 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("loginId", email)
                     editor.putString("loginPw", pw)
                     editor.commit()//꼭 저장해주기!
+
+                    //채팅관련
+                    val editorSp = sp.edit()//sp랑 연결된 에디터 만듦
+                    editorSp.putString("loginId", email)
+                    editorSp.commit()//로그아웃 기능이 없기 때문에 계속 사용자의 정보를 가지고 있게 됨
 
 
                     //로그인 성공했으면 MainActivity로 이동

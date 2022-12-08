@@ -53,7 +53,8 @@ class Fragment1 : Fragment() {
 //        val db = Firebase.database(url)
 
         //예호쌤 DB 연결
-        val yhurl = "https://android-project-yeho-default-rtdb.firebaseio.com/"
+//        val yhurl = "https://android-project-yeho-default-rtdb.firebaseio.com/"
+        val yhurl = "https://iotchat-188fe-default-rtdb.firebaseio.com/"
         val yhdb = Firebase.database(yhurl)
         val dain = yhdb.getReference("임다인")
 

@@ -77,7 +77,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.tab5 ->{
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl,
-                        Fragment5()
+                        //연락처 관련
+//                        Fragment5()
+                        //채팅 관련
+                        ChatFragment()
                     ).commit()
 
                 }
