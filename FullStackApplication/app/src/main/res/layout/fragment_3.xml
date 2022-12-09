@@ -15,6 +15,7 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBoard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
@@ -26,8 +27,11 @@
         android:id="@+id/btnWrite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_radius_yellwo"
-        android:text="Button"
+        android:text="글쓰기"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />

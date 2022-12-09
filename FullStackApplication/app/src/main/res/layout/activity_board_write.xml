@@ -10,7 +10,9 @@
         android:id="@+id/etTitle"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="제목을 입력해주세요"
@@ -33,12 +35,12 @@
         app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
     <ImageView
-        android:id="@+id/imgPlus"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="180dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/imgLoad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/etContent"
+        app:layout_constraintStart_toStartOf="@+id/etContent"
         app:layout_constraintTop_toBottomOf="@+id/etContent"
         app:srcCompat="@drawable/plusbtn" />
 
@@ -48,17 +50,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="이미지 추가"
-        app:layout_constraintEnd_toEndOf="@+id/imgPlus"
-        app:layout_constraintStart_toStartOf="@+id/imgPlus"
-        app:layout_constraintTop_toBottomOf="@+id/imgPlus" />
+        app:layout_constraintEnd_toEndOf="@+id/imgLoad"
+        app:layout_constraintStart_toStartOf="@+id/imgLoad"
+        app:layout_constraintTop_toBottomOf="@+id/imgLoad" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/imgWrite"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgLoad"
         app:srcCompat="@drawable/btnwrite" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,10 +45,12 @@ class Fragment4 : Fragment() {
 
         //1. 전체 컨텐츠 데이터들을 다 가져오자
 //        getContentData()
-        //여기서 호출하면 전부 다 가져오게 되므로 getBookMarkData 함수 안에서 호출할 수 있도록 하자~
+        //여기서 호출하면 북마크 체크가 안 되어 있는 데이터까지 전부 다 가져오게 되므로
+        //getBookMarkData 함수 안에서 호출할 수 있도록 하자~
 
         //2. 사용자가 북마크한 정보를 다 가져오자
-        getBookMarkData()
+        getBookMarkData()//bookmakrList를 다 가지고온 뒤쪽에 getContent가 실행되고 있음
+        //getContent가 하고 있는 일: 전체 데이터를 가져오는 것이 아니라 bookmarkList에 있는 것만 가져오는 역할을 함
 
         //3. 전체 컨텐츠 중에서 사용자가 북마크한 정보만 화면에 출력! => RecyclerView에 반영
         adapter = BookMarkAdapter(requireActivity(), data, keyData, bookmarkList)
@@ -62,6 +64,8 @@ class Fragment4 : Fragment() {
         return view
     }
 
+    //전체 보기에 있는 게시물 중에서 북마크가 찍힌 데이터(VO)만 가져와야 함
+    //
     fun getContentData(){
         //content 경로에 있는 데이터를 다 가지고 오자
         //uid --> keyData
@@ -75,6 +79,7 @@ class Fragment4 : Fragment() {
 //                    if (item != null) { //이건 전부다 가져오게 함 ㅠ.ㅠ
 //                        data.add(item)
 //                    }
+                    //bookmarkList에 값이 있어야 함
                     if(bookmarkList.contains(model.key.toString())){
                         if(item != null){
                             data.add(item)
