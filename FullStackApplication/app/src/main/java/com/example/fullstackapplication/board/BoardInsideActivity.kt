@@ -1,9 +1,9 @@
 package com.example.fullstackapplication.board
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.fullstackapplication.R
 import com.google.firebase.ktx.Firebase

@@ -37,7 +37,6 @@ class WeatherAdapter(val context: Context, val weatherList: ArrayList<WeatherVO>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.tvCity.setText("도시: "+weatherList.get(position).city)
         holder.tvState.setText("상태: "+weatherList.get(position).state)
         holder.tvTemp.setText("온도: "+weatherList.get(position).temp+"도")
         holder.tvHumidity.setText("습도: "+weatherList.get(position).humidity+"%")
